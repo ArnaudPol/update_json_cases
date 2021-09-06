@@ -655,13 +655,10 @@ def updatePatientUid(patient):
 def updatePatientUpdatedAt(patient):
     return dateToTimestamp(patient['updated_at'])
 
-def updatePatientPatientValues(data, patient, param_data):
+def updatePatientPatientValues(patient):
     patient_values = patient['patientValues']
     new_patient_values = []
     for patient_value in patient_values:
-        if(str(patient_value['node_id']) in param_data[getParamName(data)]['nodes_to_remove']):
-            continue
-
         new_patient_values.append(patient_value)
 
     return new_patient_values
@@ -691,7 +688,7 @@ def updatePatient(data, param_data):
     new_patient['uid']                          = updatePatientUid(patient)
     new_patient['updatedAt']                    = updatePatientUpdatedAt(patient)
     if('patientValues' in patient):
-        new_patient['patientValues']            = updatePatientPatientValues(data, patient, param_data)
+        new_patient['patientValues']            = updatePatientPatientValues(patient)
     if('medicalCases' in patient):
         new_patient['medicalCases']             = updatePatientMedicalCases(patient)
 
