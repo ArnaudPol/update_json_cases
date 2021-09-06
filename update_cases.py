@@ -229,10 +229,6 @@ def processCases(path_to_cases, param_data):
 
     return n_total, n_processed, n_failed, n_ignored
 
-#TODO: Get zip files
-def getZipCases():
-    pass
-
 def updateId(data):
     return data['id']
 
@@ -276,7 +272,7 @@ def updateDiagnosisAgreedDrugsInstance(data, drug, param_data, version_json):
     new_agreed = {}
     new_agreed['id']                                            = updateDrugsId(drug)
     new_agreed['is_anti_malarial'], new_agreed['is_antibiotic'] = updateDrugsBoolFields(drug, version_json)
-    new_agreed['formulation_id']                                = updateDrugsFormulationId(data, drug, param_data) # TODO
+    new_agreed['formulation_id']                                = updateDrugsFormulationId(data, drug, param_data)
 
     return new_agreed
 
@@ -399,7 +395,9 @@ def updateDiagnosisCustomDrugDuration(drug):
 def updateDiagnosisCustomDrugsInstance(data, drug, drug_uuid):
     new_drug_instance = {}
     if(isinstance(drug, str)): # 39
-        pass # TODO TODO TODO
+        new_drug_instance['id']   = drug_uuid
+        new_drug_instance['name'] = updateDiagnosisCustomDrugName(drug)
+        new_drug_instance['is_anti_malarial'], new_drug_instance['is_antibiotic']  = None, None
     else: # 41
         new_drug_instance['id']         = drug_uuid
         new_drug_instance['is_anti_malarial'], new_drug_instance['is_antibiotic']  = updateDrugsBoolFields(data, drug)
