@@ -198,9 +198,9 @@ def processJsonCases():
                 # Write file
                 with open('new_cases/' + json_file_name, 'w') as json_file:
                     json.dump(new_data, json_file, separators=(',', ':'))
-            except KeyError as e:
-                print(MSG_ERROR_FILE.format(file = json_file_name) + MSG_ERROR_KEY.format(key = str(e)))
-                n_failed += 1
+            #except KeyError as e:
+            #    print(MSG_ERROR_FILE.format(file = json_file_name) + MSG_ERROR_KEY.format(key = str(e)))
+            #    n_failed += 1
             except AssertionError as e:
                 print(MSG_ERROR_ASSERTION.format(file = json_file_name) + str(e))
                 print(MSG_ERROR_CONTACT)
