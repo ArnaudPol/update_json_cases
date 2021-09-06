@@ -396,7 +396,7 @@ def updateDiagnosisCustomDrugsInstance(data, drug, drug_uuid):
     new_drug_instance = {}
     if(isinstance(drug, str)): # 39
         new_drug_instance['id']   = drug_uuid
-        new_drug_instance['name'] = updateDiagnosisCustomDrugName(drug)
+        new_drug_instance['name'] = drug
         new_drug_instance['is_anti_malarial'], new_drug_instance['is_antibiotic']  = None, None
     else: # 41
         new_drug_instance['id']         = drug_uuid
