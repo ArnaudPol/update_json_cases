@@ -128,7 +128,7 @@ def getVersionId(data):
 def getParamName(data):
     return str(getCaseStudy(data)) + " " + str(getVersionId(data))
 
-# TODO: Get zip files and update json cases
+# Get zip files and update json cases
 def processZipCases():
     n_total = 0
     n_processed = 0
