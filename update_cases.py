@@ -398,6 +398,7 @@ def updateDiagnosisCustomDrugsInstance(data, drug, drug_uuid):
         new_drug_instance['id']   = drug_uuid
         new_drug_instance['name'] = drug
         new_drug_instance['is_anti_malarial'], new_drug_instance['is_antibiotic']  = None, None
+        new_drug_instance['duration']   = None
     else: # 41
         new_drug_instance['id']         = drug_uuid
         new_drug_instance['is_anti_malarial'], new_drug_instance['is_antibiotic']  = updateDrugsBoolFields(data, drug)
