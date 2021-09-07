@@ -30,6 +30,8 @@ DEFAULT_FORMULATION_ID = 0
 DEFAULT_ADDITIONAL_DRUGS = {}
 DEFAULT_CUSTOM_DRUGS = {}
 DEFAULT_DIAGNOSIS_EXCLUDED = []
+DEFAULT_NODE_VALUE = ""
+DEFAULT_NODE_ROUNDED_VALUE = ""
 
 MSG_DIRECTORY = "Checking directory..."
 MSG_DIRECTORY_FAIL = "Directory 'cases' does not exist. Before running the program, please create a new 'cases' directory containing .zip or .json files that you want to update."
@@ -485,10 +487,12 @@ def updateQuestionNodeAnswer(node):
     return node['answer']
 
 def updateQuestionNodeValue(node):
-    return node['value']
+    value = node['value']
+    return value if value is not None else DEFAULT_NODE_ROUNDED_VALUE
 
 def updateQuestionNodeRoundedValue(node):
-    return node['roundedValue']
+    rounded_value = node['roundedValue']
+    return rounded_value if rounded_value is not None else DEFAULT_NODE_ROUNDED_VALUE
 
 def updateQuestionNodeValidationMessage(node):
     return node['validationMessage']
