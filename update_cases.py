@@ -327,9 +327,10 @@ def updateDiagnosisAgreedRefused(data, diagnosis, param_data, version_json):
     proposed_diagnoses = diagnosis['proposed']
     new_agreed = {}
     new_refused = []
-    existing_diagnoses = version_json['medal_r_json']['diagnoses'].keys()
+    existing_diagnoses = version_json['medal_r_json']['final_diagnoses'].keys()
     for key in proposed_diagnoses.keys():
         if(key not in existing_diagnoses):
+            print(key, 'not in', existing_diagnoses)
             continue
 
         diag = proposed_diagnoses[key]
@@ -381,9 +382,10 @@ def updateDiagnosisAdditionalInstance(data, additional, param_data, version_json
 def updateDiagnosisAdditional(data, diagnosis, param_data, version_json):
     additionals = diagnosis['additional']
     new_additional = {}
-    existing_diagnoses = version_json['medal_r_json']['diagnoses'].keys()
+    existing_diagnoses = version_json['medal_r_json']['final_diagnoses'].keys()
     for key in additionals.keys():
-        if(str(key) not in existing_diagnoses):
+        if(key not in existing_diagnoses):
+            print(key, 'not in', existing_diagnoses)
             continue
 
         diag = additionals[key]
