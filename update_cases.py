@@ -327,7 +327,11 @@ def updateDiagnosisAgreedRefused(data, diagnosis, param_data, version_json):
     proposed_diagnoses = diagnosis['proposed']
     new_agreed = {}
     new_refused = []
+    existing_diagnoses = version_json['medal_r_json']['diagnoses'].keys()
     for key in proposed_diagnoses.keys():
+        if(key not in existing_diagnoses):
+            continue
+
         diag = proposed_diagnoses[key]
         is_agreed = diag['agreed']
         if(is_agreed):
@@ -377,7 +381,11 @@ def updateDiagnosisAdditionalInstance(data, additional, param_data, version_json
 def updateDiagnosisAdditional(data, diagnosis, param_data, version_json):
     additionals = diagnosis['additional']
     new_additional = {}
+    existing_diagnoses = version_json['medal_r_json']['diagnoses'].keys()
     for key in additionals.keys():
+        if(str(key) not in existing_diagnoses):
+            continue
+
         diag = additionals[key]
         new_additional[key] = updateDiagnosisAdditionalInstance(data, diag, param_data, version_json)
 
@@ -487,7 +495,9 @@ def updateQuestionNodeAnswer(node):
 
 def updateQuestionNodeValue(node):
     old_value = node['value']
-    return old_value['id'] if 'id' in old_value else old_value
+    has_id = isinstance(old_value, dict) and 'id' in old_value
+
+    return old_value['id'] if has_id else old_value
 
 def updateQuestionNodeRoundedValue(node):
     return node['roundedValue']
