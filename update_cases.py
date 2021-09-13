@@ -182,7 +182,6 @@ def processJsonCases():
     json_file_names = fnmatch.filter(os.listdir(path_to_cases), '*.json')
     for json_file_name in json_file_names:
         n_total += 1
-        print(json_file_name)
 
         with open("cases/" + json_file_name, encoding='utf-8') as json_file:
             data = json.load(json_file)
@@ -487,7 +486,8 @@ def updateQuestionNodeAnswer(node):
     return node['answer']
 
 def updateQuestionNodeValue(node):
-    return node['value']
+    old_value = node['value']
+    return old_value['id'] if 'id' in old_value else old_value
 
 def updateQuestionNodeRoundedValue(node):
     return node['roundedValue']
